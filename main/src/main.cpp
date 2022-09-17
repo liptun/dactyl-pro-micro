@@ -23,7 +23,6 @@ int remoteKeyMapAlt[colCount * rowCount] = {0};
 
 bool isFN = false;
 
-
 void remoteKeysUpdate(bool state) {
     int i = 0;
     while(Wire.available()) {

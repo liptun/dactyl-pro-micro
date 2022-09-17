@@ -12,7 +12,7 @@ const int rowPins[rowCount] = { 10, 16, 14, 15, 18, 19 };
 int keyMap[colCount * rowCount] = {0};
 bool keyPressed[colCount * rowCount] = {0};
 
-
+const int nullKeys[4] = {24, 25, 30, 31};
 
 void setup()
 {
@@ -58,7 +58,15 @@ void loop()
 
     Wire.beginTransmission(9);
     for (int i = 0; i < colCount * rowCount; i++) {
-        Wire.write(keyPressed[i]);
+        bool isNullKey = false;
+        for (int x = 0; x < 4; x++) {
+            if (nullKeys[x] == i) {
+                isNullKey = true;
+            }
+        }
+        if (!isNullKey) {
+            Wire.write(keyPressed[i]);
+        }
     }
     Wire.endTransmission();
 
