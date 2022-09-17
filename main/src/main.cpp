@@ -22,6 +22,7 @@ int remoteKeyMap[colCount * rowCount] = {0};
 int remoteKeyMapAlt[colCount * rowCount] = {0};
 
 bool isFN = false;
+int fnKeyId = 29;
 
 void remoteKeysUpdate(bool state) {
     int i = 0;
@@ -93,6 +94,36 @@ void setup()
     remoteKeyMap[4] = HID_KEYBOARD_4_AND_DOLLAR;
     remoteKeyMap[5] = HID_KEYBOARD_5_AND_PERCENT;
 
+    remoteKeyMap[6] = HID_KEYBOARD_EQUALS_AND_PLUS;
+    remoteKeyMap[7] = HID_KEYBOARD_Q_AND_Q;
+    remoteKeyMap[8] = HID_KEYBOARD_W_AND_W;
+    remoteKeyMap[9] = HID_KEYBOARD_E_AND_E;
+    remoteKeyMap[10] = HID_KEYBOARD_R_AND_R;
+    remoteKeyMap[11] = HID_KEYBOARD_T_AND_T;
+
+    remoteKeyMap[12] = HID_KEYBOARD_LEFT_CONTROL;
+    remoteKeyMap[13] = HID_KEYBOARD_A_AND_A;
+    remoteKeyMap[14] = HID_KEYBOARD_S_AND_S;
+    remoteKeyMap[15] = HID_KEYBOARD_D_AND_D;
+    remoteKeyMap[16] = HID_KEYBOARD_F_AND_F;
+    remoteKeyMap[17] = HID_KEYBOARD_G_AND_G;
+
+    remoteKeyMap[18] = HID_KEYBOARD_LEFT_SHIFT;
+    remoteKeyMap[19] = HID_KEYBOARD_Z_AND_Z;
+    remoteKeyMap[20] = HID_KEYBOARD_X_AND_X;
+    remoteKeyMap[21] = HID_KEYBOARD_C_AND_C;
+    remoteKeyMap[22] = HID_KEYBOARD_V_AND_V;
+    remoteKeyMap[23] = HID_KEYBOARD_B_AND_B;
+
+
+
+
+    remoteKeyMapAlt[1] = HID_KEYBOARD_F1;
+    remoteKeyMapAlt[2] = HID_KEYBOARD_F2;
+    remoteKeyMapAlt[3] = HID_KEYBOARD_F3;
+    remoteKeyMapAlt[4] = HID_KEYBOARD_F4;
+    remoteKeyMapAlt[5] = HID_KEYBOARD_F5;
+
 
     for (int i = 0; i < rowCount * colCount; i++) {
         remoteKeyMapAlt[i] = remoteKeyMap[i];
@@ -153,7 +184,7 @@ void loop()
                 Keyboard.press(isFN ? remoteKeyMapAlt[i] : remoteKeyMap[i]);
                 Keyboard.sendReport();
 
-                if (i == 28) {
+                if (i == fnKeyId) {
                     isFN = true;
                 }
 
@@ -166,7 +197,7 @@ void loop()
                 Keyboard.release(isFN ? remoteKeyMapAlt[i] : remoteKeyMap[i]);
                 Keyboard.sendReport();
 
-                if (i == 28) {
+                if (i == fnKeyId) {
                     isFN = false;
                 }
 
