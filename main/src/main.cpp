@@ -22,7 +22,7 @@ int remoteKeyMap[colCount * rowCount] = {0};
 int remoteKeyMapAlt[colCount * rowCount] = {0};
 
 bool isFN = false;
-int fnKeyId = 29;
+int fnKeyId = 26;
 
 void remoteKeysUpdate(bool state) {
     int i = 0;
@@ -67,8 +67,8 @@ void setup()
     keyMap[27] = HID_KEYBOARD_LEFT_BRACKET_AND_LEFT_CURLY_BRACE;
     keyMap[26] = HID_KEYBOARD_RIGHT_BRACKET_AND_RIGHT_CURLY_BRACE;
 
-    keyMap[28] = HID_KEYBOARD_SPACEBAR;
-    keyMap[29] = HID_KEYBOARD_ENTER;
+    keyMap[28] = HID_KEYBOARD_ENTER;
+    keyMap[29] = HID_KEYBOARD_SPACEBAR;
 
     keyMap[33] = HID_KEYBOARD_RIGHT_GUI;
 
@@ -83,6 +83,12 @@ void setup()
     keyMapAlt[2] = HID_KEYBOARD_F9;
     keyMapAlt[1] = HID_KEYBOARD_F10;
     keyMapAlt[0] = HID_KEYBOARD_F11;
+    keyMapAlt[6] = HID_KEYBOARD_F12;
+
+    keyMapAlt[17] = HID_KEYBOARD_LEFT_ARROW;
+    keyMapAlt[16] = HID_KEYBOARD_DOWN_ARROW;
+    keyMapAlt[15] = HID_KEYBOARD_UP_ARROW;
+    keyMapAlt[14] = HID_KEYBOARD_RIGHT_ARROW;
 
 
     // Left
@@ -126,6 +132,7 @@ void setup()
     remoteKeyMapAlt[3] = HID_KEYBOARD_F3;
     remoteKeyMapAlt[4] = HID_KEYBOARD_F4;
     remoteKeyMapAlt[5] = HID_KEYBOARD_F5;
+    remoteKeyMapAlt[6] = HID_KEYBOARD_GRAVE_ACCENT_AND_TILDE;
 
 
 
