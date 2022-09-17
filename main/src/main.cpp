@@ -72,7 +72,7 @@ void setup()
 
     keyMap[33] = HID_KEYBOARD_RIGHT_GUI;
 
-
+    // Alt keymapping when FN is pressed
     for (int i = 0; i < rowCount * colCount; i++) {
         keyMapAlt[i] = keyMap[i];
     } 
@@ -116,7 +116,10 @@ void setup()
     remoteKeyMap[23] = HID_KEYBOARD_B_AND_B;
 
 
-
+    // Alt keymapping when FN is pressed
+    for (int i = 0; i < rowCount * colCount; i++) {
+        remoteKeyMapAlt[i] = remoteKeyMap[i];
+    } 
 
     remoteKeyMapAlt[1] = HID_KEYBOARD_F1;
     remoteKeyMapAlt[2] = HID_KEYBOARD_F2;
@@ -125,9 +128,6 @@ void setup()
     remoteKeyMapAlt[5] = HID_KEYBOARD_F5;
 
 
-    for (int i = 0; i < rowCount * colCount; i++) {
-        remoteKeyMapAlt[i] = remoteKeyMap[i];
-    } 
 
 
     for (int i = 0; i < colCount; i++) {
@@ -163,7 +163,9 @@ void loop()
             } else {
                 if(keyPressed[keyIndex]) {
                     keyPressed[keyIndex] = false;
-                    Keyboard.release(isFN ? keyMapAlt[keyIndex] : keyMap[keyIndex]);
+                    //Keyboard.release(isFN ? keyMapAlt[keyIndex] : keyMap[keyIndex]);
+                    Keyboard.release( keyMap[keyIndex] );
+                    Keyboard.release( keyMapAlt[keyIndex] );
                     Keyboard.sendReport();
 
                     Serial.print(keyIndex); 
@@ -194,7 +196,9 @@ void loop()
         } else {
             if (remoteKeyPressed[i]) {
                 remoteKeyPressed[i] = false;
-                Keyboard.release(isFN ? remoteKeyMapAlt[i] : remoteKeyMap[i]);
+                //Keyboard.release(isFN ? remoteKeyMapAlt[i] : remoteKeyMap[i]);
+                Keyboard.release( remoteKeyMap[i] );
+                Keyboard.release( remoteKeyMapAlt[i] );
                 Keyboard.sendReport();
 
                 if (i == fnKeyId) {
