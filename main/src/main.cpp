@@ -64,13 +64,18 @@ void setup()
     keyMap[19] = HID_KEYBOARD_SLASH_AND_QUESTION_MARK;
     keyMap[18] = HID_KEYBOARD_RIGHT_SHIFT;
 
+    keyMap[24] = HID_KEYBOARD_EQUALS_AND_PLUS;
+
     keyMap[27] = HID_KEYBOARD_LEFT_BRACKET_AND_LEFT_CURLY_BRACE;
     keyMap[26] = HID_KEYBOARD_RIGHT_BRACKET_AND_RIGHT_CURLY_BRACE;
 
     keyMap[28] = HID_KEYBOARD_ENTER;
     keyMap[29] = HID_KEYBOARD_SPACEBAR;
 
+    keyMap[32] = HID_KEYBOARD_PAGE_DOWN;
     keyMap[33] = HID_KEYBOARD_RIGHT_GUI;
+    keyMap[34] = HID_KEYBOARD_PAGE_UP;
+    keyMap[35] = HID_KEYBOARD_DELETE_FORWARD;
 
     // Alt keymapping when FN is pressed
     for (int i = 0; i < rowCount * colCount; i++) {
@@ -100,7 +105,7 @@ void setup()
     remoteKeyMap[4] = HID_KEYBOARD_4_AND_DOLLAR;
     remoteKeyMap[5] = HID_KEYBOARD_5_AND_PERCENT;
 
-    remoteKeyMap[6] = HID_KEYBOARD_EQUALS_AND_PLUS;
+    remoteKeyMap[6] = HID_KEYBOARD_TAB;
     remoteKeyMap[7] = HID_KEYBOARD_Q_AND_Q;
     remoteKeyMap[8] = HID_KEYBOARD_W_AND_W;
     remoteKeyMap[9] = HID_KEYBOARD_E_AND_E;
@@ -121,18 +126,28 @@ void setup()
     remoteKeyMap[22] = HID_KEYBOARD_V_AND_V;
     remoteKeyMap[23] = HID_KEYBOARD_B_AND_B;
 
+    remoteKeyMap[24] = HID_KEYBOARD_EQUALS_AND_PLUS;
+    remoteKeyMap[25] = HID_KEYBOARD_LEFT_ALT;
+
+
+    remoteKeyMap[27] = HID_KEYBOARD_RIGHT_ALT;
+    remoteKeyMap[28] = HID_KEYBOARD_END;
+    remoteKeyMap[30] = HID_KEYBOARD_HOME;
+    remoteKeyMap[29] = HID_KEYBOARD_LEFT_GUI;
+    remoteKeyMap[31] = HID_KEYBOARD_DELETE;
+
 
     // Alt keymapping when FN is pressed
     for (int i = 0; i < rowCount * colCount; i++) {
         remoteKeyMapAlt[i] = remoteKeyMap[i];
     } 
 
+    remoteKeyMapAlt[0] = HID_KEYBOARD_GRAVE_ACCENT_AND_TILDE;
     remoteKeyMapAlt[1] = HID_KEYBOARD_F1;
     remoteKeyMapAlt[2] = HID_KEYBOARD_F2;
     remoteKeyMapAlt[3] = HID_KEYBOARD_F3;
     remoteKeyMapAlt[4] = HID_KEYBOARD_F4;
     remoteKeyMapAlt[5] = HID_KEYBOARD_F5;
-    remoteKeyMapAlt[6] = HID_KEYBOARD_GRAVE_ACCENT_AND_TILDE;
 
 
 
