@@ -12,12 +12,16 @@ const int rowPins[rowCount] = { 10, 16, 14, 15, 18, 19 };
 
 // Local keys
 int keyMap[colCount * rowCount] = {0};
+int keyMapAlt[colCount * rowCount] = {0};
 bool keyPressed[colCount * rowCount] = {0};
 
 // Remote keys (I2C)
 bool remoteKeyActive[colCount * rowCount] = {0};
 bool remoteKeyPressed[colCount * rowCount] = {0};
 int remoteKeyMap[colCount * rowCount] = {0};
+int remoteKeyMapAlt[colCount * rowCount] = {0};
+
+bool isFN = false;
 
 
 void remoteKeysUpdate(bool state) {
@@ -31,7 +35,69 @@ void setup()
 {
     Serial.begin(9600);
 
-    keyMap[0] = HID_KEYBOARD_A_AND_A;
+    // Right
+    keyMap[5] = HID_KEYBOARD_6_AND_CARAT;
+    keyMap[4] = HID_KEYBOARD_7_AND_AMPERSAND;
+    keyMap[3] = HID_KEYBOARD_8_AND_ASTERISK;
+    keyMap[2] = HID_KEYBOARD_9_AND_LEFT_PAREN;
+    keyMap[1] = HID_KEYBOARD_0_AND_RIGHT_PAREN;
+    keyMap[0] = HID_KEYBOARD_MINUS_AND_UNDERSCORE;
+
+    keyMap[11] = HID_KEYBOARD_Y_AND_Y;
+    keyMap[10] = HID_KEYBOARD_U_AND_U;
+    keyMap[9] = HID_KEYBOARD_I_AND_I;
+    keyMap[8] = HID_KEYBOARD_O_AND_O;
+    keyMap[7] = HID_KEYBOARD_P_AND_P;
+    keyMap[6] = HID_KEYBOARD_BACKSLASH_AND_PIPE;
+
+    keyMap[17] = HID_KEYBOARD_H_AND_H;
+    keyMap[16] = HID_KEYBOARD_J_AND_J;
+    keyMap[15] = HID_KEYBOARD_K_AND_K;
+    keyMap[14] = HID_KEYBOARD_L_AND_L;
+    keyMap[13] = HID_KEYBOARD_SEMICOLON_AND_COLON;
+    keyMap[12] = HID_KEYBOARD_QUOTE_AND_DOUBLEQUOTE;
+
+    keyMap[23] = HID_KEYBOARD_N_AND_N;
+    keyMap[22] = HID_KEYBOARD_M_AND_M;
+    keyMap[21] = HID_KEYBOARD_COMMA_AND_LESS_THAN;
+    keyMap[20] = HID_KEYBOARD_PERIOD_AND_GREATER_THAN;
+    keyMap[19] = HID_KEYBOARD_SLASH_AND_QUESTION_MARK;
+    keyMap[18] = HID_KEYBOARD_RIGHT_SHIFT;
+
+    keyMap[27] = HID_KEYBOARD_LEFT_BRACKET_AND_LEFT_CURLY_BRACE;
+    keyMap[26] = HID_KEYBOARD_RIGHT_BRACKET_AND_RIGHT_CURLY_BRACE;
+
+    keyMap[28] = HID_KEYBOARD_SPACEBAR;
+    keyMap[29] = HID_KEYBOARD_ENTER;
+
+    keyMap[33] = HID_KEYBOARD_RIGHT_GUI;
+
+
+    for (int i = 0; i < rowCount * colCount; i++) {
+        keyMapAlt[i] = keyMap[i];
+    } 
+
+    keyMapAlt[5] = HID_KEYBOARD_F6;
+    keyMapAlt[4] = HID_KEYBOARD_F7;
+    keyMapAlt[3] = HID_KEYBOARD_F8;
+    keyMapAlt[2] = HID_KEYBOARD_F9;
+    keyMapAlt[1] = HID_KEYBOARD_F10;
+    keyMapAlt[0] = HID_KEYBOARD_F11;
+
+
+    // Left
+
+    remoteKeyMap[0] = HID_KEYBOARD_ESCAPE;
+    remoteKeyMap[1] = HID_KEYBOARD_1_AND_EXCLAMATION_POINT;
+    remoteKeyMap[2] = HID_KEYBOARD_2_AND_AT;
+    remoteKeyMap[3] = HID_KEYBOARD_3_AND_POUND;
+    remoteKeyMap[4] = HID_KEYBOARD_4_AND_DOLLAR;
+    remoteKeyMap[5] = HID_KEYBOARD_5_AND_PERCENT;
+
+
+    for (int i = 0; i < rowCount * colCount; i++) {
+        remoteKeyMapAlt[i] = remoteKeyMap[i];
+    } 
 
 
     for (int i = 0; i < colCount; i++) {
@@ -58,12 +124,18 @@ void loop()
             if (digitalRead(colPins[col]) == LOW) {
                 if (!keyPressed[keyIndex]) {
                     keyPressed[keyIndex] = true;
+                    Keyboard.press(isFN ? keyMapAlt[keyIndex] : keyMap[keyIndex]);
+                    Keyboard.sendReport();
+
                     Serial.print(keyIndex); 
                     Serial.println("R pressed");
                 }
             } else {
                 if(keyPressed[keyIndex]) {
                     keyPressed[keyIndex] = false;
+                    Keyboard.release(isFN ? keyMapAlt[keyIndex] : keyMap[keyIndex]);
+                    Keyboard.sendReport();
+
                     Serial.print(keyIndex); 
                     Serial.println("R released");
                 }
@@ -79,24 +151,45 @@ void loop()
         if (remoteKeyActive[i]) {
             if (!remoteKeyPressed[i]) {
                 remoteKeyPressed[i] = true;
+                Keyboard.press(isFN ? remoteKeyMapAlt[i] : remoteKeyMap[i]);
+                Keyboard.sendReport();
+
+                if (i == 28) {
+                    isFN = true;
+                }
+
                 Serial.print(i);
                 Serial.println("L press");
-                //Keyboard.press(keysMap[i]);
-                //Keyboard.sendReport();
             }
         } else {
             if (remoteKeyPressed[i]) {
+                remoteKeyPressed[i] = false;
+                Keyboard.release(isFN ? remoteKeyMapAlt[i] : remoteKeyMap[i]);
+                Keyboard.sendReport();
+
+                if (i == 28) {
+                    isFN = false;
+                }
+
                 Serial.print(i);
                 Serial.println("L release");
-                remoteKeyPressed[i] = false;
-                //Keyboard.release(keysMap[i]);
-                //Keyboard.sendReport();
             }
         }
     } 
+
+    //Serial.println(isFN);
 }
 
 // 
+// HID_KEYBOARD_LEFT_CONTROL
+// HID_KEYBOARD_LEFT_SHIFT
+// HID_KEYBOARD_LEFT_ALT
+// HID_KEYBOARD_LEFT_GUI
+// HID_KEYBOARD_RIGHT_CONTROL
+// HID_KEYBOARD_RIGHT_SHIFT
+// HID_KEYBOARD_RIGHT_ALT
+// HID_KEYBOARD_RIGHT_GUI
+//
 // HID_SYSTEM_POWER_DOWN                   
 // HID_SYSTEM_SLEEP                    
 // HID_SYSTEM_WAKE_UP                  
@@ -180,6 +273,7 @@ void loop()
 // HID_KEYBOARD_7_AND_AMPERSAND                
 // HID_KEYBOARD_8_AND_ASTERISK             
 // HID_KEYBOARD_9_AND_LEFT_PAREN               
+// HID_KEYBOARD_0_AND_RIGHT_PAREN
 // HID_KEYBOARD_
 // HID_KEYBOARD_ENTER                  
 // //HID_KEYBOARD_ENTER  HID_KEYBOARD_ENTER_SLASH_RETURN
