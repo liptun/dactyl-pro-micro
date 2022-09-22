@@ -22,7 +22,7 @@ int remoteKeyMap[colCount * rowCount] = {0};
 int remoteKeyMapAlt[colCount * rowCount] = {0};
 
 bool isFN = false;
-int fnKeyId = 26;
+int fnKeyId = 31;
 
 void remoteKeysUpdate(bool state) {
     int i = 0;
@@ -41,7 +41,7 @@ void setup()
     keyMap[3] = HID_KEYBOARD_8_AND_ASTERISK;
     keyMap[2] = HID_KEYBOARD_9_AND_LEFT_PAREN;
     keyMap[1] = HID_KEYBOARD_0_AND_RIGHT_PAREN;
-    keyMap[0] = HID_KEYBOARD_MINUS_AND_UNDERSCORE;
+    keyMap[0] = HID_KEYBOARD_DELETE;
 
     keyMap[11] = HID_KEYBOARD_Y_AND_Y;
     keyMap[10] = HID_KEYBOARD_U_AND_U;
@@ -70,7 +70,7 @@ void setup()
     keyMap[26] = HID_KEYBOARD_RIGHT_BRACKET_AND_RIGHT_CURLY_BRACE;
 
     keyMap[28] = HID_KEYBOARD_ENTER;
-    keyMap[29] = HID_KEYBOARD_SPACEBAR;
+    keyMap[29] = HID_KEYBOARD_RIGHT_ALT;
 
     keyMap[32] = HID_KEYBOARD_PAGE_DOWN;
     keyMap[33] = HID_KEYBOARD_RIGHT_GUI;
@@ -127,14 +127,15 @@ void setup()
     remoteKeyMap[23] = HID_KEYBOARD_B_AND_B;
 
     remoteKeyMap[24] = HID_KEYBOARD_EQUALS_AND_PLUS;
-    remoteKeyMap[25] = HID_KEYBOARD_LEFT_ALT;
+    remoteKeyMap[25] = HID_KEYBOARD_MINUS_AND_UNDERSCORE;
+
+    remoteKeyMap[26] = HID_KEYBOARD_SPACEBAR;
+    remoteKeyMap[27] = HID_KEYBOARD_LEFT_ALT;
 
 
-    remoteKeyMap[27] = HID_KEYBOARD_RIGHT_ALT;
     remoteKeyMap[28] = HID_KEYBOARD_END;
     remoteKeyMap[30] = HID_KEYBOARD_HOME;
     remoteKeyMap[29] = HID_KEYBOARD_LEFT_GUI;
-    remoteKeyMap[31] = HID_KEYBOARD_DELETE;
 
 
     // Alt keymapping when FN is pressed
