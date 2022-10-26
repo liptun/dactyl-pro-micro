@@ -128,7 +128,7 @@ void setup()
     remoteMapLayer1[10] = HID_KEYBOARD_R_AND_R;
     remoteMapLayer1[11] = HID_KEYBOARD_T_AND_T;
 
-    remoteMapLayer1[12] = HID_KEYBOARD_LEFT_CONTROL;
+    remoteMapLayer1[12] = HID_KEYBOARD_CAPS_LOCK;
     remoteMapLayer1[13] = HID_KEYBOARD_A_AND_A;
     remoteMapLayer1[14] = HID_KEYBOARD_S_AND_S;
     remoteMapLayer1[15] = HID_KEYBOARD_D_AND_D;
@@ -146,7 +146,7 @@ void setup()
     remoteMapLayer1[25] = HID_KEYBOARD_MINUS_AND_UNDERSCORE;
 
     remoteMapLayer1[26] = HID_KEYBOARD_SPACEBAR;
-    remoteMapLayer1[27] = HID_KEYBOARD_LEFT_ALT;
+    remoteMapLayer1[27] = HID_KEYBOARD_LEFT_CONTROL;
 
 
     remoteMapLayer1[28] = HID_KEYBOARD_END;
@@ -167,6 +167,7 @@ void setup()
     remoteMapLayer2[4] = HID_KEYBOARD_F4;
     remoteMapLayer2[5] = HID_KEYBOARD_F5;
 
+    remoteMapLayer2[15] = HID_KEYBOARD_DELETE_FORWARD;
 
 
 
