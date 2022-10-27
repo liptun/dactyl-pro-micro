@@ -106,6 +106,11 @@ void setup()
 
     localMapLayer3[7] = HID_KEYBOARD_PRINTSCREEN;
 
+    localMapLayer3[17] = HID_KEYBOARD_LEFT_ARROW;
+    localMapLayer3[16] = HID_KEYBOARD_DOWN_ARROW;
+    localMapLayer3[15] = HID_KEYBOARD_UP_ARROW;
+    localMapLayer3[14] = HID_KEYBOARD_RIGHT_ARROW;
+
     // Left
 
     remoteMapLayer1[0] = HID_KEYBOARD_ESCAPE;
