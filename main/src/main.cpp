@@ -111,7 +111,6 @@ void setup()
     localMapLayer3[15] = HID_KEYBOARD_UP_ARROW;
     localMapLayer3[14] = HID_KEYBOARD_RIGHT_ARROW;
 
-
     // Left
 
     remoteMapLayer1[0] = HID_KEYBOARD_ESCAPE;
