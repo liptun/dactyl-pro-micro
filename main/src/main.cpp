@@ -84,9 +84,9 @@ void setup()
     localMapLayer1[28] = HID_KEYBOARD_ENTER;
     localMapLayer1[29] = HID_KEYBOARD_RIGHT_ALT;
 
-    localMapLayer1[32] = HID_KEYBOARD_RIGHT_ARROW;
+    localMapLayer1[32] = HID_KEYBOARD_PAGE_DOWN;
     localMapLayer1[33] = HID_KEYBOARD_RIGHT_GUI;
-    localMapLayer1[34] = HID_KEYBOARD_UP_ARROW;
+    localMapLayer1[34] = HID_KEYBOARD_PAGE_UP;
 
     // Layer 2 and 3 default
     for (int i = 0; i < rowCount * colCount; i++) {
@@ -148,8 +148,8 @@ void setup()
     remoteMapLayer1[27] = HID_KEYBOARD_LEFT_CONTROL;
 
 
-    remoteMapLayer1[28] = HID_KEYBOARD_LEFT_ARROW;
-    remoteMapLayer1[30] = HID_KEYBOARD_DOWN_ARROW;
+    remoteMapLayer1[28] = HID_KEYBOARD_END;
+    remoteMapLayer1[30] = HID_KEYBOARD_HOME;
     remoteMapLayer1[29] = HID_KEYBOARD_LEFT_GUI;
 
 
